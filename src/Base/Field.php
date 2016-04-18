@@ -14,6 +14,9 @@ abstract class Field extends Control
     use GroupContract, CssContract, DataContract;
 
     /** @var string */
+    protected $id;
+
+    /** @var string */
     protected $name;
 
     /** @var string */
@@ -40,6 +43,25 @@ abstract class Field extends Control
         'sm' => null,
         'xs' => null
     ];
+
+    /**
+     * @param string $name
+     * @return $this
+     */
+    public function id($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
      * @param string $name

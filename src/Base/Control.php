@@ -52,7 +52,7 @@ abstract class Control
 
         return array_filter($options, function($item)
         {
-            return !empty($item) && !is_array($item) && !is_object($item);
+            return $item !== NULL && $item !== FALSE && !is_array($item) && !is_object($item);
         });
     }
 

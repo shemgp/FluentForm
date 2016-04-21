@@ -199,7 +199,7 @@ abstract class Base
     private function getClasses(Control $control)
     {
         $type = get_class($control);
-        
+
         return array_map(
             function($type) { return class_basename($type); },
             array_merge([$type => $type], class_parents($control))
@@ -219,7 +219,7 @@ abstract class Base
         if ($control != null)
         {
             $classes = $this->getClasses($control);
-            
+
             foreach ($classes as $type => $class)
             {
                 if ($layout !== null)
@@ -234,10 +234,10 @@ abstract class Base
             $settings[$prefix.'Group'.$layout] = 'group';
             $settings[$prefix.'Group'] = 'group';
         }
-        
+
         return $settings;
     }
-    
+
     /**
      * @param string $layout
      * @param Control $control
@@ -282,7 +282,7 @@ abstract class Base
                     }
                 }
             }
-            
+
             return $this->decorate($control);
         }
 
@@ -297,7 +297,7 @@ abstract class Base
                     return $this->{$method}($control, $group);
                 }
             }
-            
+
             return $group->render();
         }
 
@@ -311,7 +311,7 @@ abstract class Base
     public function decorate(Control $control)
     {
         $methods = $this->getMethods($control, 'decorate');
-        
+
         foreach ($methods as $method => $mode)
         {
             if (method_exists($this, $method))
@@ -319,7 +319,7 @@ abstract class Base
                 return $this->{$method}($control);
             }
         }
-        
+
         return $control->render();
     }
 
@@ -336,4 +336,4 @@ abstract class Base
 
         return [];
     }
-} 
+}

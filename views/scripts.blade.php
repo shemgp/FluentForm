@@ -10,7 +10,7 @@
 <script type="text/javascript">
 $(function()
 {
-    @if(config('fluentform.cdn.enabled.jquery-validate', false) == true) 
+    @if(config('fluentform.cdn.enabled.jquery-validate', false) == true)
     if ($.validator)
     {
         $('form').each(function ()
@@ -44,9 +44,9 @@ $(function()
             });
         });
     }
-    @endif 
+    @endif
 
-    @if(config('fluentform.cdn.enabled.bootstrap-datetimepicker', false) == true) 
+    @if(config('fluentform.cdn.enabled.bootstrap-datetimepicker', false) == true)
     $('input[data-toggle="datetimepicker"]').each(function ()
     {
         $(this).datetimepicker($(this).data('config'))
@@ -56,8 +56,8 @@ $(function()
         $(this).prev().focus();
     });
     @endif
-     
-    @if(config('fluentform.cdn.enabled.bootstrap-daterangepicker', false) == true) 
+
+    @if(config('fluentform.cdn.enabled.bootstrap-daterangepicker', false) == true)
     $('input[data-toggle="datetimerange"]').each(function ()
     {
         var $this = $(this);
@@ -74,18 +74,18 @@ $(function()
                 $(this).prev().focus();
             });
     });
-    @endif 
+    @endif
 
     @if(config('fluentform.cdn.enabled.tinymce', false) == true)
     $('textarea[data-editor]').each(function ()
     {
         tinymce.init($(this).data('config'));
     });
-    @endif 
-    
+    @endif
+
     @if(config('fluentform.cdn.enabled.foundation', false) == true)
     $(document).foundation();
-    @endif 
+    @endif
 });
 </script>
 @endif

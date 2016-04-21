@@ -18,19 +18,19 @@ class Form extends Control
 
     /** @var string */
     protected $mode;
-    
+
     /** @var string */
     protected $method = 'POST';
-    
+
     /** @var array */
     protected $url;
 
     /** @var array */
     protected $route;
-    
+
     /** @var array */
     protected $action;
-    
+
     /** @var bool */
     protected $files = false;
 
@@ -61,7 +61,7 @@ class Form extends Control
     {
         return $this->mode;
     }
-    
+
     /**
      * @param string $url
      * @param array $params
@@ -82,10 +82,10 @@ class Form extends Control
     public function route($route, $params = [])
     {
         $this->route = array_merge([$route], $params);
-        
+
         return $this;
     }
-    
+
     /**
      * @param string $action
      * @param array $params
@@ -94,7 +94,7 @@ class Form extends Control
     public function action($action, $params = [])
     {
         $this->action = array_merge([$action], $params);
-        
+
         return $this;
     }
 
@@ -105,7 +105,7 @@ class Form extends Control
     public function method($method)
     {
         $this->method = $method;
-        
+
         return $this;
     }
 
@@ -146,7 +146,7 @@ class Form extends Control
 
     /**
      * Set size of the controls in horizontal form
-     * 
+     *
      * @param int $lg
      * @param int $md
      * @param int $sm
@@ -159,10 +159,10 @@ class Form extends Control
 
         return $this;
     }
-    
+
     /**
      * Set size of the label in horizontal form
-     * 
+     *
      * @param int $lg
      * @param int $md
      * @param int $sm
@@ -234,11 +234,11 @@ class Form extends Control
             $live = $this->renderer()->validation()->getOptions('__FORM', '');
             $options = array_merge($live, $this->getOptions());
             $method = strtoupper(array_get($options, 'method', 'POST'));
-            
+
             $options['method'] = $method != 'GET' ? 'POST' : $method;
             $options['action'] = $this->getFormAction();
             $options['accept-charset'] = 'UTF-8';
-            
+
             if ($this->files == true)
             {
                 $options['enctype'] = 'multipart/form-data';
@@ -249,8 +249,8 @@ class Form extends Control
             if (in_array($method, ['DELETE', 'PATCH', 'PUT']))
             {
                 $html .= $this->html()->tag('input', [
-                    'type' => 'hidden', 
-                    'name' => '_method', 
+                    'type' => 'hidden',
+                    'name' => '_method',
                     'value' => $method
                 ]);
             }
@@ -258,22 +258,22 @@ class Form extends Control
             if ($method != 'GET')
             {
                 $html .= $this->html()->tag('input', [
-                    'type' => 'hidden', 
-                    'name' => '_token', 
+                    'type' => 'hidden',
+                    'name' => '_token',
                     'value' => $this->session()->token()
                 ]);
             }
-            
+
             return $html;
         }
 
         if ($this->getMode() == 'form:close')
         {
             $this->binder()->model(null);
-            
+
             return $this->html()->close('form');
         }
-        
+
         return '';
     }
 

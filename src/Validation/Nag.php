@@ -9,7 +9,7 @@ class Nag extends Base
 {
     /** @var \DragonFly\Nag\Converters\Contract */
     private $converter = null;
-    
+
     /** @var array */
     public $rules = [];
 
@@ -26,10 +26,10 @@ class Nag extends Base
     public function __construct()
     {
         $className = 'DragonFly\\Nag\\Converters\\'.config('nag.driver', 'FormValidation');
-        
+
         $this->converter = app()->make($className);
     }
-    
+
     /**
      * @param array $rules
      * @param array $messages
@@ -53,7 +53,7 @@ class Nag extends Base
         {
             return array_map(function($value) { return (string)$value; }, $this->converter->formOptions);
         }
-        
+
         if ($this->ruleExist($name))
         {
             if (!$this->useLabel)

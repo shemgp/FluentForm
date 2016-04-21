@@ -135,11 +135,13 @@ abstract class Base
 
     /**
      * @param mixed $rules
+     * @param array $messages
+     * @param boolean $useLabel
      * @return $this
      */
-    public function rules($rules)
+    public function rules($rules, $messages = [], $useLabel = true)
     {
-        $this->validation->setRules($rules);
+        $this->validation->setRules($rules, $messages, $useLabel);
 
         $this->rules = $rules;
 

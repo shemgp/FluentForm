@@ -9,8 +9,10 @@ abstract class Base
 {
     /**
      * @param array $rules
+     * @param array $messages
+     * @param boolean $useLabel
      */
-    public abstract function setRules($rules);
+    public abstract function setRules($rules, $messages = [], $useLabel = true);
 
     /**
      * @param string $name

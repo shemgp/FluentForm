@@ -13,6 +13,13 @@ class Nag extends Base
     /** @var array */
     public $rules = [];
 
+    /** @var array */
+    protected $messages = [];
+
+    /** @var array */
+    protected $useLabel = true;
+
+
     /**
      * Class constructor
      */
@@ -25,10 +32,12 @@ class Nag extends Base
     
     /**
      * @param array $rules
+     * @param array $messages
      */
-    public function setRules($rules)
+    public function setRules($rules, $messages = [], $useLabel = true)
     {
         $this->rules = $rules;
+        $this->messages = $messages;
     }
 
     /**
@@ -47,7 +56,10 @@ class Nag extends Base
         
         if ($this->ruleExist($name))
         {
-            $options = $this->converter->convertRules($name, $this->getRules($name));
+            if (!$this->useLabel)
+                $label = null;
+
+            $options = $this->converter->convertRules($name, $this->getRules($name), $this->getMessages($name), $label);
         }
 
         return $options;
@@ -69,7 +81,28 @@ class Nag extends Base
     protected function getRules($name)
     {
         $rules = array_get($this->rules, $name, []);
-        
+
         return is_array($rules) ? $rules : explode('|', $rules);
     }
-} 
+
+    /**
+     * @param string $name
+     * @return array
+     */
+    protected function getMessages($name, $label = '')
+    {
+        $messages = [];
+        foreach($this->messages as $key => $message)
+        {
+            if (stripos($key, $name.'.') === 0)
+            {
+                if (!empty($label))
+                    $messages[$key] = str_replace(":attribute", $label, $message);
+                else
+                    $messages[$key] = $message;
+            }
+        }
+
+        return $messages;
+    }
+}

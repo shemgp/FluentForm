@@ -11,14 +11,20 @@ class JQuery extends Base
     public $rules = [];
 
     /** @var array */
+    public $messages = [];
+
+    /** @var array */
     protected $numericRules = ['integer', 'numeric'];
 
     /**
      * @param array $rules
+     * @param array $messages
      */
-    public function setRules($rules)
+    public function setRules($rules, $messages = [], $useLabel = true)
     {
         $this->rules = $rules;
+        // NOTE: not implemented for jquery yet
+        $this->messages = $messages;
     }
 
     /**

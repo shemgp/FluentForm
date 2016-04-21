@@ -133,11 +133,13 @@ class Form extends Control
 
     /**
      * @param array $rules
+     * @param array $messages
+     * @param array $useLabel
      * @return $this
      */
-    public function rules(array $rules)
+    public function rules(array $rules, array $messages = [], $useLabel = true)
     {
-        $this->renderer()->rules($rules);
+        $this->renderer()->rules($rules, $messages, $useLabel);
 
         return $this;
     }
